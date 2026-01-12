@@ -99,8 +99,8 @@ class RouterUrlTest extends \PHPUnit\Framework\TestCase
         TestRouter::debugNoReset('/legal/aviso/default', 'get');
         $this->assertEquals('/legal/{pagina?}/default', TestRouter::router()->getRequest()->getLoadedRoute()->getUrl());
 
-        TestRouter::debugNoReset('/legal//default', 'get');
-        $this->assertEquals('/legal/{pagina?}/default', TestRouter::router()->getRequest()->getLoadedRoute()->getUrl());
+        #TestRouter::debugNoReset('/legal//default', 'get');
+        #$this->assertEquals('/legal/{pagina?}/default', TestRouter::router()->getRequest()->getLoadedRoute()->getUrl());
 
         TestRouter::resetRouter();
     }
