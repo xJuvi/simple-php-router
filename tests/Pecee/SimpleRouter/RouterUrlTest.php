@@ -79,6 +79,7 @@ class RouterUrlTest extends \PHPUnit\Framework\TestCase
         TestRouter::get('/aviso/{aviso}', 'DummyController@method1');
         TestRouter::get('/pagina/{pagina}', 'DummyController@method1');
         TestRouter::get('/{pagina?}', 'DummyController@method1');
+        TestRouter::get('/legal/{pagina?}/default', 'DummyController@method1');
 
         TestRouter::debugNoReset('/aviso/optional', 'get');
         $this->assertEquals('/aviso/{aviso}/', TestRouter::router()->getRequest()->getLoadedRoute()->getUrl());
@@ -94,6 +95,12 @@ class RouterUrlTest extends \PHPUnit\Framework\TestCase
 
         TestRouter::debugNoReset('/avisolegal', 'get');
         $this->assertEquals('/{pagina?}/', TestRouter::router()->getRequest()->getLoadedRoute()->getUrl());
+
+        TestRouter::debugNoReset('/legal/aviso/default', 'get');
+        $this->assertEquals('/legal/{pagina?}/default', TestRouter::router()->getRequest()->getLoadedRoute()->getUrl());
+
+        TestRouter::debugNoReset('/legal//default', 'get');
+        $this->assertEquals('/legal/{pagina?}/default', TestRouter::router()->getRequest()->getLoadedRoute()->getUrl());
 
         TestRouter::resetRouter();
     }
